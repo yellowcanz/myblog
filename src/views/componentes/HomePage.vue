@@ -86,6 +86,7 @@
                     <p class="mb-4">{{ item.description }}</p>
                     <router-link :to="`/mdfile/${item.name}`" class="text-blue-500">阅读更多</router-link>
                 </div>
+                <ceshi v-highlight></ceshi>
             </div>
         </div>
 
@@ -181,6 +182,8 @@
 // eslint-disable-next-line no-unused-vars
 import { onMounted, ref } from 'vue';
 import { jsArray, vueArray } from '../../getData/getArticle';
+import ceshi from '@/mdfile/ceshi.md'
+
 const people = [
     {
         name: '音乐/Music',
