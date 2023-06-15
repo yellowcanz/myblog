@@ -1,5 +1,5 @@
 const jsonData = {
-  "baseUrl": "/src/mdfile",
+  "baseUrl": "./mdfile",
   "js": [
     {
       "name": "ceshi.md",
