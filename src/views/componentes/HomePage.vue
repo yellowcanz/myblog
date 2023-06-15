@@ -264,6 +264,7 @@ const mdfileList = ref([]);
 
 onMounted(async () => {
     mdfileList.value = [...await jsArray(), ...await vueArray()];
+    console.log(mdfileList.value);
 });
 
 </script>

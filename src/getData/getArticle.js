@@ -1,7 +1,7 @@
 import jsonData from './mdList'
 
 export  const openMdFile = (filePath) => {
-    console.log(filePath);
+  
     return import(/* @vite-ignore */ filePath).then(md => {
         return {
             title: md.frontmatter.title,
@@ -23,4 +23,7 @@ export const noteArray = async () => {
     return await Promise.all(jsonData.note.map(item => openMdFile(`${baseUrl}/${item.name}`)))
 }
 
-console.log(baseUrl)
+console.log(1111111111111);
+console.log(...await jsArray());
+console.log(...await vueArray());
+console.log(...await noteArray());
