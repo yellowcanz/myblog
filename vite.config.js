@@ -7,7 +7,7 @@ import code from '@yankeeinlondon/code-builder'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base:'./',
+  base:'/',
   plugins: [
     Vue({
       include: [/\.vue$/, /\.md$/], // <--
