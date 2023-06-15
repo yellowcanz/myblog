@@ -23,7 +23,8 @@ export const noteArray = async () => {
     return await Promise.all(jsonData.note.map(item => openMdFile(`${baseUrl}/${item.name}`)))
 }
 
+
 console.log(1111111111111);
-console.log(...await jsArray());
-console.log(...await vueArray());
-console.log(...await noteArray());
+console.log(jsArray());
+console.log(vueArray());
+console.log(noteArray());
