@@ -3,8 +3,10 @@
         <!-- 大屏幕时展开的菜单栏 -->
         <nav class="hidden md:flex md:items-center md:justify-between p-4">
             <!-- 头像 -->
-            <img src="https://avatars.githubusercontent.com/u/75051323?s=400&u=17be729876407a08c16d0b2eaf5775c3eaf1f4af&v=4" alt="Avatar" class="w-8 h-8 rounded-full" />
-
+            <router-link to="/">
+                <img src="https://avatars.githubusercontent.com/u/75051323?s=400&u=17be729876407a08c16d0b2eaf5775c3eaf1f4af&v=4"
+                    alt="Avatar" class="w-8 h-8 rounded-full" />
+            </router-link>
             <!-- 搜索框 -->
             <div class="flex items-center">
                 <input type="text" placeholder="Search" class="mr-4 px-2 py-1 rounded-lg focus:outline-none" />
@@ -13,10 +15,14 @@
 
             <!-- 菜单项 -->
             <div class="flex justify-center">
-                <a href="#" class="text-white mx-4">Home</a>
-                <a href="#" class="text-white mx-4">About</a>
-                <a href="#" class="text-white mx-4">Services</a>
-                <a href="#" class="text-white mx-4">Contact</a>
+                <router-link to="/js"
+                    class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">JS</router-link>
+                <router-link to="/vue"
+                    class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">Vue</router-link>
+                <router-link to="/note"
+                    class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">笔记</router-link>
+                <router-link to="/other"
+                    class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">其他</router-link>
             </div>
         </nav>
 
@@ -24,7 +30,8 @@
         <div class="md:hidden text-center">
             <div class="flex justify-between items-center px-4 py-2">
                 <!-- 头像 -->
-                <img src="https://avatars.githubusercontent.com/u/75051323?s=400&u=17be729876407a08c16d0b2eaf5775c3eaf1f4af&v=4" alt="Avatar" class="w-8 h-8 rounded-full" />
+                <img src="https://avatars.githubusercontent.com/u/75051323?s=400&u=17be729876407a08c16d0b2eaf5775c3eaf1f4af&v=4"
+                    alt="Avatar" class="w-8 h-8 rounded-full" />
 
                 <!-- 搜索框 -->
                 <div class="flex-grow">
@@ -45,13 +52,17 @@
             </div>
 
             <div v-if="isOpen" class="p-4">
-              
+
                 <!-- 菜单项 -->
                 <div class="flex flex-col justify-center">
-                    <a href="#" class="block text-white mb-2">Home</a>
-                    <a href="#" class="block text-white mb-2">About</a>
-                    <a href="#" class="block text-white mb-2">Services</a>
-                    <a href="#" class="block text-white">Contact</a>
+                    <router-link to="/js"
+                        class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">JS</router-link>
+                    <router-link to="/vue"
+                        class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">Vue</router-link>
+                    <router-link to="/note"
+                        class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">笔记</router-link>
+                    <router-link to="/other"
+                        class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">其他</router-link>
                 </div>
             </div>
         </div>

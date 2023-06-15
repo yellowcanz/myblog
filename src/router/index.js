@@ -7,8 +7,28 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'homeview',
       component: HomeView
+    },
+    {
+      path: '/js',
+      name: 'js',
+      component: () => import('@/views/JsPage.vue')
+    },
+    {
+      path: '/vue',
+      name: 'vue',
+      component: () => import('@/views/VuePage.vue')
+    },
+    {
+      path: '/note',
+      name: 'note',
+      component: () => import('@/views/NotePage.vue')
+    },
+    {
+      path: '/other',
+      name: 'other',
+      component: () => import('@/views/OtherPage.vue')
     },
     {
       path: '/mdfile/:fileName',

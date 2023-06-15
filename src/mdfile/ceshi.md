@@ -1,7 +1,7 @@
 ---
 title: 我的文章标题
 description: 这是文章的简短描述
-date: 2023-06-08
+date: 2023/06/08
 author: John Doe
 name: ceshi
 tags:

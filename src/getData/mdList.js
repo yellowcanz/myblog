@@ -1,12 +1,22 @@
 const jsonData = {
   "baseUrl": "/src/mdfile",
-  "home": [
+  "js": [
     {
       "name": "ceshi.md",
       "type": "type1"
+    },
+    {
+      "name": "ceshi2.md",
+      "type": "type1"
     }
   ],
-  "js": [
+  "vue": [
+    {
+      "name": "ceshi2.md",
+      "type": "type1"
+    }
+  ],
+  "note": [
     {
       "name": "ceshi2.md",
       "type": "type1"
