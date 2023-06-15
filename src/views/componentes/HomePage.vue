@@ -186,8 +186,7 @@ const people = [
         name: '音乐/Music',
         email: 'Spotify.com',
         role: 'Yellowcan',
-        imageUrl:
-            '/src/assets/favicon32.b64ecc03.png',
+        imageUrl:'/assets/favicon32.b64ecc03.png',
         lastSeen: '3h ago',
         lastSeenDateTime: '2023-06-01T13:23Z',
     },
@@ -195,8 +194,7 @@ const people = [
         name: '看剧/Netflix',
         email: 'Netflix.com',
         role: 'Yellowcan',
-        imageUrl:
-            '/src/assets/nficon2016.png',
+        imageUrl:'/src/assets/nficon2016.png',
         lastSeen: '3h ago',
         lastSeenDateTime: '2023-01-23T13:23Z',
     },
@@ -204,16 +202,14 @@ const people = [
         name: '彩票/Lottery',
         email: 'http://www.cwl.gov.cn/',
         role: 'Fantasy',
-        imageUrl:
-            '/src/assets/n_logo.png',
+        imageUrl:'/src/assets/n_logo.png',
         lastSeen: null,
     },
     {
         name: '学英语/LearningEnglish',
         email: 'English?.com',
         role: 'Students',
-        imageUrl:
-            '/src/assets/favicon_32x32.png',
+        imageUrl:'/src/assets/favicon_32x32.png',
         lastSeen: '3h ago',
         lastSeenDateTime: '2023-01-23T13:23Z',
     },
@@ -221,8 +217,7 @@ const people = [
         name: '起床起码/Code',
         email: 'github.com',
         role: 'Yellowcan',
-        imageUrl:
-            '/src/assets/fluidicon.png',
+        imageUrl:'/src/assets/fluidicon.png',
         lastSeen: '3h ago',
         lastSeenDateTime: '2023-01-23T13:23Z',
     },
