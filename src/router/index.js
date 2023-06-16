@@ -31,10 +31,20 @@ const router = createRouter({
       component: () => import('@/views/OtherPage.vue')
     },
     {
-      path: '/mdfile/:fileName',
+      path: '/mdfile/:fileSha',
       component: MdFilePage
     }
   ]
+})
+
+// eslint-disable-next-line no-unused-vars
+router.onError((error, to) => {
+  if (error.message.includes('Failed to fetch dynamically imported module')) {
+    console.log('ERROR IN ROUTE; ', error.message);
+    setTimeout(() => {
+      window.location.href = to.fullPath;
+    }, 2000);
+  }
 })
 
 export default router

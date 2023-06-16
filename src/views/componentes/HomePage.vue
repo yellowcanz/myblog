@@ -80,13 +80,14 @@
         <div class="mt-8">
             <h2 class="text-2xl font-bold mb-4">部分文章</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-white rounded shadow p-4" v-for="item of mdfileList" :key="item.name">
-                    <p class="mb-4 text-sm text-zinc-400 dark:text-zinc-500">{{ item.date.slice(0, 10) }}</p>
+                <div class="bg-white rounded shadow p-4" v-for="item of mdfileList" :key="item.sha">
+                    <p class="mb-4 text-sm text-zinc-400 dark:text-zinc-500">{{ item.date }}</p>
                     <h3 class="text-lg font-bold mb-2">{{ item.title }}</h3>
                     <p class="mb-4">{{ item.description }}</p>
-                    <router-link :to="`/mdfile/${item.name}`" class="text-blue-500">阅读更多</router-link>
+                    <router-link :to="`/mdfile/${item.sha}`" class="text-blue-500">阅读更多</router-link>
                 </div>
                 <ceshi v-highlight></ceshi>
+                <!-- <component :is="dynamicComponent" v-highlight /> -->
             </div>
         </div>
 
@@ -174,22 +175,23 @@
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
-<script setup >
-// eslint-disable-next-line no-unused-vars
+<script setup>
 import { onMounted, ref } from 'vue';
-import { jsArray, vueArray } from '../../getData/getArticle';
+import { jsMdData, fileData, base64ToArrayBuffer } from '../../getData/getArticle.js';
 import ceshi from '@/mdfile/ceshi.md'
+import MarkdownIt from 'markdown-it';
+// import MarkdownItVue from 'markdown-it-vue';
+import fm from 'front-matter';
 
 const people = [
     {
         name: '音乐/Music',
         email: 'Spotify.com',
         role: 'Yellowcan',
-        imageUrl:'/assets/favicon32.b64ecc03.png',
+        imageUrl: '/assets/favicon32.b64ecc03.png',
         lastSeen: '3h ago',
         lastSeenDateTime: '2023-06-01T13:23Z',
     },
@@ -197,7 +199,7 @@ const people = [
         name: '看剧/Netflix',
         email: 'Netflix.com',
         role: 'Yellowcan',
-        imageUrl:'/assets/nficon2016.png',
+        imageUrl: '/assets/nficon2016.png',
         lastSeen: '3h ago',
         lastSeenDateTime: '2023-01-23T13:23Z',
     },
@@ -205,14 +207,14 @@ const people = [
         name: '彩票/Lottery',
         email: 'http://www.cwl.gov.cn/',
         role: 'Fantasy',
-        imageUrl:'/assets/n_logo.png',
+        imageUrl: '/assets/n_logo.png',
         lastSeen: null,
     },
     {
         name: '学英语/LearningEnglish',
         email: 'English?.com',
         role: 'Students',
-        imageUrl:'/assets/favicon_32x32.png',
+        imageUrl: '/assets/favicon_32x32.png',
         lastSeen: '3h ago',
         lastSeenDateTime: '2023-01-23T13:23Z',
     },
@@ -220,7 +222,7 @@ const people = [
         name: '起床起码/Code',
         email: 'github.com',
         role: 'Yellowcan',
-        imageUrl:'/assets/fluidicon.png',
+        imageUrl: '/assets/fluidicon.png',
         lastSeen: '3h ago',
         lastSeenDateTime: '2023-01-23T13:23Z',
     },
@@ -257,15 +259,37 @@ const callouts = [
         href: '#',
     },
 ]
-// 首页就放三篇文章吧
+
+// 首页就放三篇js文章吧
 const mdfileList = ref([]);
 
 
+const mdFilesData = ref([])
+
+
+const mdFiles = async () => {
+    await Promise.all(
+        mdFilesData.value.map(async obj => {
+            const { sha } = obj
+            const { content } = await fileData(sha);
+            const decoder = new TextDecoder('utf-8');
+            const decodedContent = decoder.decode(base64ToArrayBuffer(content));
+            const md = new MarkdownIt();
+            const { attributes, body } = fm(decodedContent);
+            mdfileList.value.push({ ...attributes, sha })
+            const renderedHTML = md.render(body);
+            return {
+                renderedHTML
+            }
+
+        }))
+}
 
 onMounted(async () => {
-    mdfileList.value = [...await jsArray(), ...await vueArray()];
-    console.log(mdfileList.value);
+    mdFilesData.value = await jsMdData('js')
+    mdFiles()
 });
+
 
 </script>
 

@@ -28,11 +28,11 @@
   
 <script setup>
 import { ref, onMounted } from 'vue';
-import { jsArray } from '@/getData/getArticle';
+// import { jsArray } from '@/getData/getArticle.js';
 const articles = ref([]);
 
 onMounted(async () => {
-    articles.value = await jsArray()
+    // articles.value = await jsArray()
 })
 
 

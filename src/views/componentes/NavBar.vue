@@ -30,8 +30,10 @@
         <div class="md:hidden text-center">
             <div class="flex justify-between items-center px-4 py-2">
                 <!-- 头像 -->
-                <img src="https://avatars.githubusercontent.com/u/75051323?s=400&u=17be729876407a08c16d0b2eaf5775c3eaf1f4af&v=4"
-                    alt="Avatar" class="w-8 h-8 rounded-full" />
+                <router-link to="/">
+                    <img src="https://avatars.githubusercontent.com/u/75051323?s=400&u=17be729876407a08c16d0b2eaf5775c3eaf1f4af&v=4"
+                        alt="Avatar" class="w-8 h-8 rounded-full" />
+                </router-link>
 
                 <!-- 搜索框 -->
                 <div class="flex-grow">

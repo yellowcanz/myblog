@@ -6,25 +6,49 @@
     <p class="my-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
       {{ frontmatter.title }}
     </p>
-    <component :is="dynamicComponent" v-highlight />
+    <div v-html="dynamicComponent" v-highlight></div>
   </div>
 </template>
 
 <script setup>
-import { shallowRef, ref } from 'vue'
+import { shallowRef, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { fileData,base64ToArrayBuffer } from '@/getData/getArticle.js'
+import MarkdownIt from 'markdown-it';
+import fm from 'front-matter';
+
 
 const route = useRoute()
 // 接受路由传递的文件名字
-const fileName = route.params.fileName
+const fileSha = route.params.fileSha
 const dynamicComponent = shallowRef(null)
 const frontmatter = ref('')
+
 // 动态导入文件
-import(`@/mdfile/${fileName}.md`).then((md) => {
-  dynamicComponent.value = md.default
-  // 获取md文件中的frontmatter信息
-  frontmatter.value = md.frontmatter
+
+const mdFiles = async () => {
+  const { content } = await fileData(fileSha);
+  const decoder = new TextDecoder('utf-8');
+  const decodedContent = decoder.decode(base64ToArrayBuffer(content));
+  const md = new MarkdownIt();
+  const { attributes, body } = fm(decodedContent);
+  frontmatter.value = attributes
+  const renderedHTML = md.render(body);
+  dynamicComponent.value = renderedHTML
+
+
+}
+
+
+
+onMounted(async () => {
+  mdFiles()
 })
+// import(`@/mdfile/${fileName}.md`).then((md) => {
+//   dynamicComponent.value = md.default
+//   // 获取md文件中的frontmatter信息
+//   frontmatter.value = md.frontmatter
+// })
 </script>
 
 <style lang="less" module></style>

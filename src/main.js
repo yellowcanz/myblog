@@ -11,6 +11,7 @@ import 'highlight.js/styles/dark.css';
 
 import  'tailwindcss/tailwind.css'
 
+
 hljs.registerLanguage('javascript', javascript);
 
 const app = createApp(App)
