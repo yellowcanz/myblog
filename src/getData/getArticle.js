@@ -33,9 +33,11 @@
 
 // import axios from "axios"
 import requset from './mdList'
-// import MarkdownIt from 'markdown-it';
+import MarkdownIt from 'markdown-it';
+import fm from 'front-matter';
 // import MarkdownItVue from 'markdown-it-vue';
-// import fm from 'front-matter';
+
+
 // https://gitee.com/api/v5/repos/{owner}/{repo}/contents(/{path})
 
 // https://gitee.com/api/v5/repos/yellowcanz/blogmd/contents/js?access_token=afdee1e56b182b556ec35082d7a8e519&ref=master
@@ -52,7 +54,7 @@ const repo = 'blogmd'
 const access_token = 'afdee1e56b182b556ec35082d7a8e519'
 // const jsMdUrl = ``
 
-export const jsMdData = (path) => {
+export const MdData = (path) => {
     return requset({
         method: 'get',
         url: `https://gitee.com/api/v5/repos/${owner}/${repo}/contents/${path}?access_token=${access_token}`,
@@ -77,3 +79,17 @@ export const base64ToArrayBuffer = (base64) => {
     return bytes.buffer;
 }
 
+export const getMdFiles = async (sha) => {
+    const frontmatterList = []
+    const { content } = await fileData(sha);
+    const decoder = new TextDecoder('utf-8');
+    const decodedContent = decoder.decode(base64ToArrayBuffer(content));
+    const { attributes, body } = fm(decodedContent);
+    frontmatterList.push({...attributes,sha})
+    const md = new MarkdownIt();
+    const renderedHTML = md.render(body);
+    return {
+        renderedHTML,
+        frontmatterList
+    }
+} 

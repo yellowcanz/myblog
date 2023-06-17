@@ -9,7 +9,7 @@
             </router-link>
             <!-- 搜索框 -->
             <div class="flex items-center">
-                <input type="text" placeholder="Search" class="mr-4 px-2 py-1 rounded-lg focus:outline-none" />
+                <input type="text" placeholder="还没做功能" class="mr-4 px-2 py-1 rounded-lg focus:outline-none" />
                 <button class="text-white">Search</button>
             </div>
 

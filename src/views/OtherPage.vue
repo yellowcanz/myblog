@@ -1,6 +1,6 @@
 <template>
   <div class="text-8xl">
-    敬请期待
+    这里还不知道放些什么东西
   </div>
 </template>
 

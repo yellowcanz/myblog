@@ -13,9 +13,9 @@
 <script setup>
 import { shallowRef, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { fileData,base64ToArrayBuffer } from '@/getData/getArticle.js'
-import MarkdownIt from 'markdown-it';
-import fm from 'front-matter';
+import { getMdFiles } from '@/getData/getArticle.js'
+// import MarkdownIt from 'markdown-it';
+// import fm from 'front-matter';
 
 
 const route = useRoute()
@@ -25,18 +25,20 @@ const dynamicComponent = shallowRef(null)
 const frontmatter = ref('')
 
 // 动态导入文件
-
 const mdFiles = async () => {
-  const { content } = await fileData(fileSha);
-  const decoder = new TextDecoder('utf-8');
-  const decodedContent = decoder.decode(base64ToArrayBuffer(content));
-  const md = new MarkdownIt();
-  const { attributes, body } = fm(decodedContent);
-  frontmatter.value = attributes
-  const renderedHTML = md.render(body);
-  dynamicComponent.value = renderedHTML
 
-
+  const result = await getMdFiles(fileSha)
+  frontmatter.value = [...result.frontmatterList][0]
+  console.log(frontmatter);
+  dynamicComponent.value = result.renderedHTML
+  // const { content } = await fileData(fileSha);
+  // const decoder = new TextDecoder('utf-8');
+  // const decodedContent = decoder.decode(base64ToArrayBuffer(content));
+  // const { attributes, body } = fm(decodedContent);
+  // frontmatter.value = attributes
+  // const md = new MarkdownIt();
+  // const renderedHTML = md.render(body);
+  // dynamicComponent.value = renderedHTML
 }
 
 
