@@ -6,7 +6,7 @@
     <p class="my-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
       {{ frontmatter.title }}
     </p>
-    <div v-html="dynamicComponent" v-highlight></div>
+    <div class="markdown-container" v-html="dynamicComponent" v-highlight></div>
   </div>
 </template>
 
@@ -53,4 +53,19 @@ onMounted(async () => {
 // })
 </script>
 
-<style lang="less" module></style>
+<style scoped>
+:deep(.markdown-container h3) {
+  @apply text-xl font-bold mt-4 mb-2;
+}
+
+:deep(.markdown-container p) {
+  @apply text-gray-700 mb-4 leading-relaxed;
+}
+
+:deep(.markdown-container a) {
+  @apply text-blue-500 underline;
+}
+:deep(pre) {
+  @apply mb-4
+}
+</style>
