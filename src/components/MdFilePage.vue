@@ -15,7 +15,7 @@ import { shallowRef, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getMdFiles } from '@/getData/getArticle.js'
 
-
+console.log(11111111)
 const route = useRoute()
 // 接受路由传递的文件名字
 const fileSha = route.params.fileSha
@@ -27,6 +27,7 @@ const frontmatter = ref('')
 const mdFiles = async () => {
 
   const result = await getMdFiles(fileSha)
+  console.log(result)
   frontmatter.value = [...result.frontmatterList][0]
   dynamicComponent.value = result.renderedHTML
 
@@ -35,7 +36,7 @@ const mdFiles = async () => {
 
 
 onMounted(async () => {
-  // mdFiles()
+   mdFiles()
 })
 
 </script>
