@@ -28,7 +28,6 @@ const mdFiles = async () => {
 
   const result = await getMdFiles(fileSha)
   frontmatter.value = [...result.frontmatterList][0]
-  console.log(frontmatter);
   dynamicComponent.value = result.renderedHTML
 
 }
