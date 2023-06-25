@@ -21,6 +21,7 @@ import { getMdFiles } from '@/getData/getArticle.js'
 const route = useRoute()
 // 接受路由传递的文件名字
 const fileSha = route.params.fileSha
+console.log(fileSha)
 const dynamicComponent = shallowRef(null)
 const frontmatter = ref('')
 
@@ -29,7 +30,6 @@ const mdFiles = async () => {
 
   const result = await getMdFiles(fileSha)
   frontmatter.value = [...result.frontmatterList][0]
-  console.log(frontmatter);
   dynamicComponent.value = result.renderedHTML
   // const { content } = await fileData(fileSha);
   // const decoder = new TextDecoder('utf-8');
