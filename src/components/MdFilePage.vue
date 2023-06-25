@@ -15,30 +15,24 @@ import { shallowRef, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getMdFiles } from '@/getData/getArticle.js'
 
-console.log(11111111)
+
 const route = useRoute()
 // 接受路由传递的文件名字
-localStorage.setItem('sha',route.params.fileSha)
-
-const fileSha = localStorage.getItem('sha')
-
+const fileSha = route.params.fileSha
 console.log(fileSha);
 const dynamicComponent = shallowRef(null)
 const frontmatter = ref('')
 
 // 动态导入文件
 const mdFiles = async () => {
-
   const result = await getMdFiles(fileSha)
   console.log(result)
   frontmatter.value = [...result.frontmatterList][0]
   dynamicComponent.value = result.renderedHTML
-
 }
 
 
-
-onMounted(async () => {
+onMounted(() => {
    mdFiles()
 })
 
