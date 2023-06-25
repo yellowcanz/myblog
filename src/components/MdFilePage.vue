@@ -57,6 +57,15 @@ onMounted(async () => {
 :deep(.markdown-container h3) {
   @apply text-xl font-bold mt-4 mb-2;
 }
+:deep(.markdown-container h4) {
+  @apply text-lg font-bold mt-4 mb-2;
+}
+:deep(.markdown-container h5) {
+  @apply text-base font-bold mt-4 mb-2;
+}
+:deep(.markdown-container h3) {
+  @apply text-sm font-bold mt-4 mb-2;
+}
 
 :deep(.markdown-container p) {
   @apply text-gray-700 mb-4 leading-relaxed;
