@@ -18,7 +18,10 @@ import { getMdFiles } from '@/getData/getArticle.js'
 console.log(11111111)
 const route = useRoute()
 // 接受路由传递的文件名字
-const fileSha = route.params.fileSha
+localStorage.setItem('sha',route.params.fileSha)
+
+const fileSha = localStorage.getItem('sha')
+
 console.log(fileSha);
 const dynamicComponent = shallowRef(null)
 const frontmatter = ref('')
