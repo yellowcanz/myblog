@@ -14,13 +14,12 @@
 import { shallowRef, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getMdFiles } from '@/getData/getArticle.js'
-// import MarkdownIt from 'markdown-it';
-// import fm from 'front-matter';
 
 
 const route = useRoute()
 // 接受路由传递的文件名字
 const fileSha = route.params.fileSha
+console.log(fileSha);
 const dynamicComponent = shallowRef(null)
 const frontmatter = ref('')
 
@@ -31,26 +30,15 @@ const mdFiles = async () => {
   frontmatter.value = [...result.frontmatterList][0]
   console.log(frontmatter);
   dynamicComponent.value = result.renderedHTML
-  // const { content } = await fileData(fileSha);
-  // const decoder = new TextDecoder('utf-8');
-  // const decodedContent = decoder.decode(base64ToArrayBuffer(content));
-  // const { attributes, body } = fm(decodedContent);
-  // frontmatter.value = attributes
-  // const md = new MarkdownIt();
-  // const renderedHTML = md.render(body);
-  // dynamicComponent.value = renderedHTML
+
 }
 
 
 
 onMounted(async () => {
-  mdFiles()
+  // mdFiles()
 })
-// import(`@/mdfile/${fileName}.md`).then((md) => {
-//   dynamicComponent.value = md.default
-//   // 获取md文件中的frontmatter信息
-//   frontmatter.value = md.frontmatter
-// })
+
 </script>
 
 <style scoped>
@@ -63,7 +51,7 @@ onMounted(async () => {
 :deep(.markdown-container h5) {
   @apply text-base font-bold mt-4 mb-2;
 }
-:deep(.markdown-container h3) {
+:deep(.markdown-container h6) {
   @apply text-sm font-bold mt-4 mb-2;
 }
 
