@@ -76,6 +76,9 @@
 
         </div>
 
+        <!-- 时间 -->
+        <HolidDay></HolidDay>
+
         <!-- 卡片文章 -->
         <div class="mt-8">
             <h2 class="text-2xl font-bold mb-4">部分文章</h2>
@@ -179,6 +182,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { MdData, getMdFiles } from '../../getData/getArticle.js';
+import HolidDay from '../../components/HolidDay.vue';
 
 const people = [
     {
