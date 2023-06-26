@@ -86,8 +86,6 @@
                     <p class="mb-4">{{ item.description }}</p>
                     <router-link :to="`/mdfile/${item.sha}`" class="text-blue-500">阅读更多</router-link>
                 </div>
-                <!-- <ceshi v-highlight></ceshi> -->
-                <!-- <component :is="dynamicComponent" v-highlight /> -->
             </div>
         </div>
 
@@ -181,10 +179,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { MdData, getMdFiles } from '../../getData/getArticle.js';
-// import ceshi from '@/mdfile/ceshi.md'
-// import MarkdownIt from 'markdown-it';
-// import MarkdownItVue from 'markdown-it-vue';
-// import fm from 'front-matter';
 
 const people = [
     {
@@ -235,7 +229,6 @@ const features = [
     { name: '小学', description: '2006-2012 阳春 深圳' },
     { name: '学前班', description: '2005-2006? 阳春' },
 ]
-
 const callouts = [
     {
         name: 'Desk and Office',
@@ -266,24 +259,12 @@ const mdfileList = ref([]);
 // 存放MdData数据
 const mdFilesData = ref([])
 
-
 const mdFiles = async () => {
     await Promise.all(
         mdFilesData.value.map(async obj => {
             const { sha } = obj
-
             const result = await getMdFiles(sha)
             mdfileList.value.push(...result.frontmatterList)
-            // const { content } = await fileData(sha);
-            // const decoder = new TextDecoder('utf-8');
-            // const decodedContent = decoder.decode(base64ToArrayBuffer(content));
-            // const { attributes, body } = fm(decodedContent);
-            // mdfileList.value.push({ ...attributes, sha })
-            // const md = new MarkdownIt();
-            // const renderedHTML = md.render(body);
-            // return {
-            //     renderedHTML
-            // }
         }))
 }
 

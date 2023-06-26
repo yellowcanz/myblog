@@ -1,35 +1,3 @@
-// import jsonData from './mdList.js'
-
-// export const openMdFile = async (filePath) => {
-//     return await import(filePath).then(md => {
-//         return {
-//             title: md.frontmatter.title,
-//             description: md.frontmatter.description,
-//             name: md.frontmatter.name,
-//             date: md.frontmatter.date
-//         };
-//     })
-
-// };
-
-// export const baseUrl = jsonData.baseUrl
-
-// export const jsArray = async () => {
-//     return await Promise.all(jsonData.js.map(item => openMdFile(`${baseUrl}/${item.name}`)))
-// }
-
-// export const vueArray = async () => {
-//     return await Promise.all(jsonData.vue.map(item => openMdFile(`${baseUrl}/${item.name}`)))
-// }
-
-// export const noteArray = async () => {
-//     return await Promise.all(jsonData.note.map(item => openMdFile(`${baseUrl}/${item.name}`)))
-// }
-
-
-// // console.log(jsArray());
-// // console.log(vueArray());
-// // console.log(noteArray());
 
 // import axios from "axios"
 import requset from './mdList'

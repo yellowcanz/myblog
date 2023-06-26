@@ -7,7 +7,7 @@
                         {{ article.date }} </p>
                 </div>
                 <div class="md:col-span-3 group relative flex flex-col items-start">
-                    <h2 class="text-lg font-bold">{{ article.title }}</h2>
+                    <h2 class="text-lg font-bold text-zinc-950 dark:text-zinc-400">{{ article.title }}</h2>
                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">{{
                         article.description }}</p>
                     <router-link :to="`/mdfile/${article.sha}`"

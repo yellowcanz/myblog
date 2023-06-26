@@ -1,30 +1,3 @@
-// const jsonData = {
-//   "baseUrl": "/src/mdfile",
-//   "js": [
-//     {
-//       "name": "ceshi.md",
-//       "type": "type1"
-//     },
-//     {
-//       "name": "ceshi2.md",
-//       "type": "type1"
-//     }
-//   ],
-//   "vue": [
-//     {
-//       "name": "ceshi2.md",
-//       "type": "type1"
-//     }
-//   ],
-//   "note": [
-//     {
-//       "name": "ceshi2.md",
-//       "type": "type1"
-//     }
-//   ]
-// }
-
-// export default jsonData
 
 import axios from 'axios'
 const serive = axios.create({

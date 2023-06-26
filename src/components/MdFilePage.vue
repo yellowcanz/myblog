@@ -17,16 +17,14 @@ import { getMdFiles } from '@/getData/getArticle.js'
 
 
 const route = useRoute()
-// 接受路由传递的文件名字
+// 接受路由传递的参数  sha
 const fileSha = route.params.fileSha
-console.log(fileSha);
 const dynamicComponent = shallowRef(null)
 const frontmatter = ref('')
 
 // 动态导入文件
 const mdFiles = async () => {
   const result = await getMdFiles(fileSha)
-  console.log(result)
   frontmatter.value = [...result.frontmatterList][0]
   dynamicComponent.value = result.renderedHTML
 }
