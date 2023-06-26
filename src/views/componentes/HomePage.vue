@@ -83,7 +83,7 @@
                 <div class="bg-white rounded shadow p-4" v-for="item of mdfileList" :key="item.sha">
                     <p class="mb-4 text-sm text-zinc-400 dark:text-zinc-500">{{ item.date }}</p>
                     <h3 class="text-lg font-bold mb-2">{{ item.title }}</h3>
-                    <p class="mb-4">{{ item.description }}</p>
+                    <p class="mb-4 overflow-hidden text-gray-600 line-clamp-2">{{ item.description }}</p>
                     <router-link :to="`/mdfile/${item.sha}`" class="text-blue-500">阅读更多</router-link>
                 </div>
             </div>

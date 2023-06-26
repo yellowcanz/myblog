@@ -15,14 +15,14 @@
 
             <!-- 菜单项 -->
             <div class="flex justify-center">
-                <router-link to="/js"
-                    class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">JS</router-link>
-                <router-link to="/vue"
-                    class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">Vue</router-link>
-                <router-link to="/note"
-                    class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">笔记</router-link>
-                <router-link to="/other"
-                    class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">其他</router-link>
+                <router-link to="/js" class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg"
+                    @click="closeMenu">JS</router-link>
+                <router-link to="/vue" class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg"
+                    @click="closeMenu">Vue</router-link>
+                <router-link to="/note" class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg"
+                    @click="closeMenu">笔记</router-link>
+                <router-link to="/other" class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg"
+                    @click="closeMenu">其他</router-link>
             </div>
         </nav>
 
@@ -57,14 +57,14 @@
 
                 <!-- 菜单项 -->
                 <div class="flex flex-col justify-center">
-                    <router-link to="/js"
-                        class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">JS</router-link>
-                    <router-link to="/vue"
-                        class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">Vue</router-link>
-                    <router-link to="/note"
-                        class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">笔记</router-link>
-                    <router-link to="/other"
-                        class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg">其他</router-link>
+                    <router-link to="/js" class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg"
+                        @click="closeMenu">JS</router-link>
+                    <router-link to="/vue" class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg"
+                        @click="closeMenu">Vue</router-link>
+                    <router-link to="/note" class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg"
+                        @click="closeMenu">笔记</router-link>
+                    <router-link to="/other" class="text-white mx-4 hover:bg-gray-300 hover:text-black px-2 py-1 rounded-lg"
+                        @click="closeMenu">其他</router-link>
                 </div>
             </div>
         </div>
@@ -73,11 +73,19 @@
   
   
 <script setup>
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 const isOpen = ref(false)
 const toggleMenu = () => {
     isOpen.value = !isOpen.value;
 }
+
+const closeMenu = () => {
+    isOpen.value = false;
+};
+// 监听路由变化，关闭导航栏
+watchEffect(() => {
+    isOpen.value = false;
+});
 </script>
   
 <style>
