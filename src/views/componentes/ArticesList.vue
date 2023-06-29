@@ -29,12 +29,20 @@ const mdFilesData = ref([])
 
 // 获取md文件内容
 const mdFiles = async () => {
-    await Promise.all(
+    const results = await Promise.all(
         mdFilesData.value.map(async obj => {
             const { sha } = obj
             const result = await getMdFiles(sha)
-            articles.value.push(...result.frontmatterList)
+            // articles.value.push(...result.frontmatterList)
+            return { frontmatterList: result.frontmatterList, index: mdFilesData.value.findIndex(item => item.sha === sha) }
         }))
+    // 根据索引排序结果
+    results.sort((a, b) => b.index - a.index)
+    
+    // 将排序后的内容添加到 articles 数组
+    results.forEach(result => {
+        articles.value.push(...result.frontmatterList)
+    })
 }
 
 onMounted(async () => {
