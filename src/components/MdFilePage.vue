@@ -31,7 +31,7 @@ const mdFiles = async () => {
 
 
 onMounted(() => {
-   mdFiles()
+  mdFiles()
 })
 
 </script>

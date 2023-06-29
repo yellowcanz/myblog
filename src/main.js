@@ -7,12 +7,16 @@ import router from './router'
 
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
+import css from 'highlight.js/lib/languages/css';
+import html from 'highlight.js/lib/languages/xml';
 import 'highlight.js/styles/dark.css';
 
-import  'tailwindcss/tailwind.css'
+import 'tailwindcss/tailwind.css'
 
 
 hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('html', html);
 
 const app = createApp(App)
 
