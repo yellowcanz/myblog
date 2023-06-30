@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p class="my-8 text-base xl:text-2xl font-bold text-slate-500 dark:text-slate-300">{{ countdown }}</p>
+        <p class="my-8 text-base xl:text-2xl font-bold text-sky-900 dark:text-slate-300">{{ countdown }}</p>
     </div>
 </template>
 
@@ -18,11 +18,11 @@ const countdownToNextHoliday = () => {
             let daysOff = 0; // 放假天数
             if (nextHoliday) {
                 const holidayDate = new Date(nextHoliday.date);
-                const remainingTime = Math.max(holidayDate - currentDate, 0);
-                const remainingDays = Math.ceil(remainingTime / (1000 * 60 * 60 * 24));
-                const remainingHours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const remainingMinutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-                const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                const remainingTime = Math.max(holidayDate - currentDate, 0); //毫秒
+                const remainingDays = Math.ceil(remainingTime / (1000 * 60 * 60 * 24));  //天数 1000 * 60 * 60 *24
+                const remainingHours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  //小时 % 1000 * 60 * 60 * 24  / 1000 * 60 * 60
+                const remainingMinutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));  //分钟  % 1000 * 60 * 60 / 1000 * 60
+                const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);      //秒  % 1000 * 60 / 1000
                 // console.log("距离下一个节假日" + nextHoliday.name + "还有 " + remainingDays + " 天 " + remainingHours + " 小时 " + remainingMinutes + " 分钟 " + remainingSeconds + " 秒。");
                 const time = "下一个节假日" + nextHoliday.name + "还有 " + remainingDays + " 天 " + remainingHours + " 小时 " + remainingMinutes + " 分钟 " + remainingSeconds + " 秒。";
                 const targetIndex = data.days.findIndex(item => item.date == nextHoliday.date)

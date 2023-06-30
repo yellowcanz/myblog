@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import MdFilePage from '@/components/MdFilePage.vue';
 
 const router = createRouter({
@@ -13,22 +13,22 @@ const router = createRouter({
     {
       path: '/js',
       name: 'js',
-      component: () => import('@/views/JsPage.vue')
+      component: () => import('@/views/meunPgae/JsPage.vue')
     },
     {
       path: '/vue',
       name: 'vue',
-      component: () => import('@/views/VuePage.vue')
+      component: () => import('@/views/meunPgae/VuePage.vue')
     },
     {
       path: '/note',
       name: 'note',
-      component: () => import('@/views/NotePage.vue')
+      component: () => import('@/views/meunPgae/NotePage.vue')
     },
     {
       path: '/other',
       name: 'other',
-      component: () => import('@/views/OtherPage.vue')
+      component: () => import('@/views/meunPgae/OtherPage.vue')
     },
     {
       path: '/mdfile/:fileSha',

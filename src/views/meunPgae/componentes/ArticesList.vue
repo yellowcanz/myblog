@@ -38,16 +38,17 @@ const mdFiles = async () => {
         }))
     // 根据索引排序结果
     results.sort((a, b) => b.index - a.index)
-    
+
     // 将排序后的内容添加到 articles 数组
     results.forEach(result => {
         articles.value.push(...result.frontmatterList)
     })
 }
-
 onMounted(async () => {
     mdFilesData.value = await MdData(route.name)
+    console.time()
     mdFiles()
+    console.timeEnd()
 })
 </script>
 

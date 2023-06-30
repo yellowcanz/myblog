@@ -2,8 +2,7 @@
     <div class="flex flex-col md:flex-row w-full">
         <div class="w-full">
             <div class="bg-white p-4 mx-auto max-w-2xl lg:max-w-5xl">
-                <div class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl mt-16">记录一些JS的问题
-                </div>
+                <StyledText :value="msg"></StyledText>
                 <articesList></articesList>
             </div>
         </div>
@@ -12,6 +11,9 @@
   
 <script setup>
 import articesList from './componentes/ArticesList.vue'
+import StyledText from './componentes/StyledText.vue';
+const msg = ref('记录一些Vue的问题')
+import { ref } from 'vue';
 
 </script>
   

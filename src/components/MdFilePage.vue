@@ -1,9 +1,9 @@
 <template>
   <div class="px-8 bg-white mx-auto max-w-7xl lg:px-16 pt-16 md:pt-32 pb-8">
-    <p class="ml-3 order-first flex items-center text-base text-zinc-400 dark:text-zinc-500">
+    <p class="ml-3 order-first flex items-center text-base text-zinc-800 dark:text-zinc-500">
       {{ frontmatter.date }}
     </p>
-    <p class="my-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+    <p class="my-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-500 sm:text-5xl">
       {{ frontmatter.title }}
     </p>
     <div class="markdown-container" v-html="dynamicComponent" v-highlight></div>
