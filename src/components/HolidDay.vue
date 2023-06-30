@@ -10,7 +10,7 @@ import { ref, onBeforeUnmount } from "vue"
 
 const countdown = ref('')
 const countdownToNextHoliday = () => {
-    fetch('https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/2023.json')
+    fetch('/assets/2023.json')
         .then(response => response.json())
         .then(data => {
             const currentDate = new Date();
@@ -35,7 +35,7 @@ const countdownToNextHoliday = () => {
                 const longtime = nextHoliday.name + "放假 " + daysOff + " 天。";
                 countdown.value = `${time}${longtime}`
             } else {
-                console.log("没有找到下一个节假日。");
+                countdown.value = "今年的节假日已经过完了，马上新的一年了。你赚到钱了吗？";
             }
         }).catch(err => { console.log(err); })
 }
