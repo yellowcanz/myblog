@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p class="my-8 text-base xl:text-2xl font-bold text-sky-900 dark:text-slate-300">{{ currentTime }}</p>
         <p class="my-8 text-base xl:text-2xl font-bold text-sky-900 dark:text-slate-300">{{ countdown }}</p>
     </div>
 </template>
@@ -42,6 +43,36 @@ const countdownToNextHoliday = () => {
 
 
 const intervalId = setInterval(countdownToNextHoliday, 1000)
+
+
+
+const currentTime = ref('')
+const updateCurrentTime = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1; // 月份从0开始，需要加1
+    const date = now.getDate();
+    const dayOfWeek = now.getDay(); // 0 表示星期日，1 表示星期一，以此类推
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    // 判断秒数是否小于10，如果是，则在前面添加0
+    const secondsFormatted = seconds < 10 ? `0${seconds}` : seconds;
+
+
+
+    // 星期的文本表示
+    const daysOfWeekText = ['日', '一', '二', '三', '四', '五', '六'];
+
+    currentTime.value = `${year}年${month}月${date}日，星期${daysOfWeekText[dayOfWeek]}，${hours}:${minutes}:${secondsFormatted}`;
+
+    // 延迟一秒后再次更新时间
+    setTimeout(() => {
+        updateCurrentTime();
+    }, 1000);
+};
+
+updateCurrentTime();
 
 onBeforeUnmount(() => {
     clearInterval(intervalId);

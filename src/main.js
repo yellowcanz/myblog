@@ -14,6 +14,7 @@ import 'highlight.js/styles/dark.css';
 import 'tailwindcss/tailwind.css'
 
 
+
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('css', css);
 hljs.registerLanguage('html', html);
