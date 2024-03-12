@@ -11,32 +11,42 @@ import { ref, onBeforeUnmount } from "vue"
 
 const countdown = ref('')
 const countdownToNextHoliday = () => {
-    fetch('/assets/2023.json')
+    fetch('/assets/2024.json')
         .then(response => response.json())
         .then(data => {
             const currentDate = new Date();
+            // const currentDate = new Date('2024-05-01');
+            //找下一个节假日
             const nextHoliday = data.days.find(day => new Date(day.date) >= currentDate && day.isOffDay);
             let daysOff = 0; // 放假天数
             if (nextHoliday) {
                 const holidayDate = new Date(nextHoliday.date);
-                const remainingTime = Math.max(holidayDate - currentDate, 0); //毫秒
-                const remainingDays = Math.ceil(remainingTime / (1000 * 60 * 60 * 24));  //天数 1000 * 60 * 60 *24
-                const remainingHours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  //小时 % 1000 * 60 * 60 * 24  / 1000 * 60 * 60
-                const remainingMinutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));  //分钟  % 1000 * 60 * 60 / 1000 * 60
-                const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);      //秒  % 1000 * 60 / 1000
-                // console.log("距离下一个节假日" + nextHoliday.name + "还有 " + remainingDays + " 天 " + remainingHours + " 小时 " + remainingMinutes + " 分钟 " + remainingSeconds + " 秒。");
-                const time = "下一个节假日" + nextHoliday.name + "还有 " + remainingDays + " 天 " + remainingHours + " 小时 " + remainingMinutes + " 分钟 " + remainingSeconds + " 秒。";
-                const targetIndex = data.days.findIndex(item => item.date == nextHoliday.date)
-                for (let i = targetIndex; i < data.days.length; i++) {
-                    if (data.days[i].isOffDay) {
-                        daysOff++
+                if (holidayDate.getDate() === currentDate.getDate()) { // If it's the holiday day
+                    countdown.value = "现在是节假日，玩的开心";
+                } else {
+
+                    const holidayDate = new Date(nextHoliday.date);
+                    const remainingTime = Math.max(holidayDate - currentDate, 0); //毫秒
+                    const remainingDays = Math.ceil(remainingTime / (1000 * 60 * 60 * 24));  //天数 1000 * 60 * 60 *24
+                    const remainingHours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  //小时 % 1000 * 60 * 60 * 24  / 1000 * 60 * 60
+                    const remainingMinutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));  //分钟  % 1000 * 60 * 60 / 1000 * 60
+                    const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);      //秒  % 1000 * 60 / 1000
+                    // console.log("距离下一个节假日" + nextHoliday.name + "还有 " + remainingDays + " 天 " + remainingHours + " 小时 " + remainingMinutes + " 分钟 " + remainingSeconds + " 秒。");
+                    const time = "下一个节假日" + nextHoliday.name + "还有 " + remainingDays + " 天 " + remainingHours + " 小时 " + remainingMinutes + " 分钟 " + remainingSeconds + " 秒。";
+                    const targetIndex = data.days.findIndex(item => item.date == nextHoliday.date)
+                    for (let i = targetIndex; i < data.days.length; i++) {
+                        if (data.days[i].isOffDay) {
+                            daysOff++
+                        } else {
+                            break
+                        }
                     }
+                    // console.log(nextHoliday.name + "的放假天数为 " + daysOff + " 天。");
+                    const longtime = nextHoliday.name + "放假 " + daysOff + " 天。";
+                    countdown.value = `${time}${longtime}`
                 }
-                // console.log(nextHoliday.name + "的放假天数为 " + daysOff + " 天。");
-                const longtime = nextHoliday.name + "放假 " + daysOff + " 天。";
-                countdown.value = `${time}${longtime}`
             } else {
-                countdown.value = "今年的节假日已经过完了，马上新的一年了。你赚到钱了吗？";
+                countdown.value = "今年的节假日已经过完了！抬起头，仰起脸，继续面对生活吧！";
             }
         }).catch(err => { console.log(err); })
 }
@@ -56,7 +66,10 @@ const updateCurrentTime = () => {
     const hours = now.getHours();
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
-    // 判断秒数是否小于10，如果是，则在前面添加0
+
+    // 判断 时 分 秒 数是否小于10，如果是，则在前面添加0
+    const hoursFormatted = hours < 10 ? `0${hours}` : hours;
+    const minutesFormatted = minutes < 10 ? `0${minutes}` : minutes;
     const secondsFormatted = seconds < 10 ? `0${seconds}` : seconds;
 
 
@@ -64,7 +77,7 @@ const updateCurrentTime = () => {
     // 星期的文本表示
     const daysOfWeekText = ['日', '一', '二', '三', '四', '五', '六'];
 
-    currentTime.value = `${year}年${month}月${date}日，星期${daysOfWeekText[dayOfWeek]}，${hours}:${minutes}:${secondsFormatted}`;
+    currentTime.value = `${year}年${month}月${date}日，星期${daysOfWeekText[dayOfWeek]}，${hoursFormatted}:${minutesFormatted}:${secondsFormatted}`;
 
     // 延迟一秒后再次更新时间
     setTimeout(() => {
